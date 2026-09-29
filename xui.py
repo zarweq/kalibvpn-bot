@@ -23,7 +23,7 @@ class XUIError(Exception):
 
 class XUI:
     def __init__(self, base_url: str, token: str, verify: bool = True):
-        # base_url вместе с webBasePath, например https://1.2.3.4:28378/secretpath
+        # base_url вместе с webBasePath, например https://1.2.3.4:2053/secretpath
         self.base = base_url.rstrip("/")
         self.client = httpx.AsyncClient(
             verify=verify,
