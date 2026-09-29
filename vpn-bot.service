@@ -4,6 +4,8 @@ After=network-online.target x-ui.service
 
 [Service]
 WorkingDirectory=/opt/vpn-bot
+# Даты в сообщениях бота — по московскому времени
+Environment=TZ=Europe/Moscow
 ExecStart=/opt/vpn-bot/venv/bin/python bot.py
 Restart=always
 RestartSec=5

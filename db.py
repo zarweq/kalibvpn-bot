@@ -53,6 +53,11 @@ async def init(path: str) -> None:
     await _db.commit()
 
 
+async def close() -> None:
+    if _db is not None:
+        await _db.close()
+
+
 async def _one(sql: str, params=()):
     async with _db.execute(sql, params) as cur:
         return await cur.fetchone()

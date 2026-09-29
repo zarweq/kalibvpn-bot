@@ -341,8 +341,14 @@ async def main() -> None:
     dp.include_router(admin.router)
     dp.include_router(router)
     await setup_profile(bot)
-    asyncio.create_task(expiry_notifier(bot))
-    await dp.start_polling(bot)
+    notifier = asyncio.create_task(expiry_notifier(bot))
+    try:
+        await dp.start_polling(bot)
+    finally:
+        # Без закрытия базы поток aiosqlite не даёт процессу завершиться при остановке
+        notifier.cancel()
+        await db.close()
+        await bot.session.close()
 
 
 if __name__ == "__main__":
