@@ -1,0 +1,13 @@
+# секреты и данные
+.env
+*.db
+*.db-journal
+
+# окружение
+venv/
+__pycache__/
+*.pyc
+
+# скриншоты для заявки в ЮKassa (на них виден ключ)
+assets/yookassa/
+.DS_Store
